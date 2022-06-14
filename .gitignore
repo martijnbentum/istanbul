@@ -1,0 +1,15 @@
+*.DS_Store
+*.pyc
+*.swp
+*.xlsx
+__pychache__
+installations/SWP/
+installations/migrations/*
+utilities/migrations/*
+data/
+db.sqlite3*
+.env
+static/
+*.txt
+*.json
+media/
