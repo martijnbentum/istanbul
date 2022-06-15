@@ -1,4 +1,6 @@
 from django.db import models
+from partial_date import PartialDateField
+from colorfield.fields import ColorField
 
 
 dargs = {'on_delete':models.SET_NULL,'blank':True,'null':True}
@@ -22,6 +24,10 @@ class Gender(models.Model):
 class Person(models.Model):
 	name = models.CharField(max_length=300,blank=True,null=True)
 	gender = models.ForeignKey(Gender,**dargs)
+	birth_year = PartialDateField(null=True,blank=True)
+	death_year = PartialDateField(null=True,blank=True)
+	start_reign = PartialDateField(null=True,blank=True)
+	end_reign = PartialDateField(null=True,blank=True)
 	religion = models.ForeignKey(Religion,**dargs)
 	description = models.TextField(default = '')
 	comments = models.TextField(default = '')
@@ -50,6 +56,7 @@ class Image(models.Model):
 	gpsargs = {'blank':True,'null':True,'max_digits':8,'decimal_places':5}
 	image_file = models.FileField(upload_to='IMAGES/',null=True,blank=True)
 	maker = models.CharField(max_length=300,blank=True,null=True)
+	year = PartialDateField(null=True,blank=True)
 	title = models.CharField(max_length=300,blank=True,null=True)
 	url= models.CharField(max_length=1000,blank=True,null=True)
 	current_location= models.CharField(max_length=300,blank=True,null=True)
@@ -61,7 +68,7 @@ class Image(models.Model):
 
 class Style(models.Model):
 	name = models.CharField(max_length=300)
-	# color = ColorField(default='#FF0000')
+	color = ColorField(default='#FF0000')
 	line_thickness = models.IntegerField(default = 2)
 	fill_opacity = models.FloatField(default = 0.3)
 	line_opacity = models.FloatField(default = 0.3)
@@ -78,6 +85,8 @@ class Event(models.Model):
 	event_type = models.ForeignKey(EventType,**dargs)
 	persons= models.ManyToManyField(Person,blank=True,default= None)
 	institutions= models.ManyToManyField(Institution,blank=True,default= None)
+	start_date = PartialDateField(null=True,blank=True)
+	end_date = PartialDateField(null=True,blank=True)
 	date_comments = models.TextField(default = '')
 	images = models.ManyToManyField(Image,blank=True,default= None)
 	figure = models.ForeignKey(Figure,**dargs)
@@ -125,6 +134,8 @@ class Literature(models.Model):
 class SystemInstallationRelation(models.Model):
 	system = models.ForeignKey(System,**dargs)
 	installation = models.ForeignKey(Installation,**dargs)
+	start_date = PartialDateField(null=True,blank=True)
+	end_date = PartialDateField(null=True,blank=True)
 	description = models.TextField(default = '')
 	comments = models.TextField(default = '')
 	is_part_of = models.BooleanField(blank=True,null=True)
