@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 	'installations.apps.InstallationsConfig',
+	'utilities.apps.UtilitiesConfig',
 	'django_select2',
+	'colorfield'
 ]
 
 MIDDLEWARE = [
