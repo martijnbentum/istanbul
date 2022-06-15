@@ -111,7 +111,7 @@ class Installation(models.Model):
 	turkish_name = models.CharField(max_length=1000,blank=True,null=True)
 	installation_type = models.ForeignKey(InstallationType,**dargs)
 	events = models.ManyToManyField(Event,blank=True,default= None)
-	purpose = models.ManyToManyField(Purpose,blank=True,default= None)
+	purposes = models.ManyToManyField(Purpose,blank=True,default= None)
 	description = models.TextField(default = '')
 	comments = models.TextField(default = '')
 	still_exists = models.BooleanField(blank=True,null=True)
