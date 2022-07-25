@@ -182,7 +182,7 @@ class LiteratureWidget(ModelSelect2Widget):
 		return Literature.objects.all().order_by('name')
 
 
-class TextType(ModelSelect2Widget):
+class TextTypeWidget(ModelSelect2Widget):
 	model = TextType
 	search_fields = ['name__icontains']
 
