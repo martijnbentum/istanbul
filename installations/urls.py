@@ -18,5 +18,8 @@ urlpatterns = [
 	path('edit_system/<int:pk>', views.edit_system, name = 'edit_system'),
 	path('edit_system/<int:pk>/<str:focus>', views.edit_system, 
 		name = 'edit_system'),
+	path('edit_person/<int:pk>', views.edit_person, name = 'edit_person'),
+	path('edit_person/<int:pk>/<str:focus>', views.edit_person, 
+		name = 'edit_person'),
 	path('hello_world/',views.hello_world, name = 'hello_world'),
 ]

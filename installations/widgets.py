@@ -11,7 +11,7 @@ class SystemWidget(ModelSelect2Widget):
 	model = System
 	search_fields = [x + '__icontains' for x in names]
 	
-	def label_from_instance(self):
+	def label_from_instance(self,obj):
 		return obj.original_name
 
 	def get_queryset(self):
@@ -22,7 +22,7 @@ class ReligionWidget(ModelSelect2Widget):
 	model = Religion
 	search_fields = ['name__icontains']
 
-	def label_from_instance(self):
+	def label_from_instance(self,obj):
 		return obj.name
 	
 	def get_queryset(self):
@@ -33,7 +33,7 @@ class GenderWidget(ModelSelect2Widget):
 	model = Gender
 	search_fields = ['name__icontains']
 
-	def label_from_instance(self):
+	def label_from_instance(self,obj):
 		return obj.name
 	
 	def get_queryset(self):
@@ -44,7 +44,7 @@ class PersonsWidget(ModelSelect2MultipleWidget):
 	model = Person
 	search_fields = ['name__icontains']
 
-	def label_from_instance(self):
+	def label_from_instance(self,obj):
 		return obj.name
 	
 	def get_queryset(self):
@@ -55,7 +55,7 @@ class InstitutionTypeWidget(ModelSelect2Widget):
 	model = InstitutionType
 	search_fields = ['name__icontains']
 
-	def label_from_instance(self):
+	def label_from_instance(self,obj):
 		return obj.name
 	
 	def get_queryset(self):
@@ -66,7 +66,7 @@ class InstitutionsWidget(ModelSelect2MultipleWidget):
 	model = Institution
 	search_fields = [x + '__icontains' for x in names]
 	
-	def label_from_instance(self):
+	def label_from_instance(self,obj):
 		return obj.original_name
 
 	def get_queryset(self):
@@ -77,7 +77,7 @@ class EventTypeWidget(ModelSelect2Widget):
 	model = EventType
 	search_fields = ['name__icontains']
 
-	def label_from_instance(self):
+	def label_from_instance(self,obj):
 		return obj.name
 	
 	def get_queryset(self):
@@ -88,7 +88,7 @@ class ImagesWidget(ModelSelect2MultipleWidget):
 	model = Image
 	search_fields = ['title__icontains']
 
-	def label_from_instance(self):
+	def label_from_instance(self,obj):
 		return obj.title
 	
 	def get_queryset(self):
@@ -99,7 +99,7 @@ class StyleWidget(ModelSelect2Widget):
 	model = Style
 	search_fields = ['name__icontains']
 
-	def label_from_instance(self):
+	def label_from_instance(self,obj):
 		return obj.name
 	
 	def get_queryset(self):
@@ -110,7 +110,7 @@ class FigureWidget(ModelSelect2Widget):
 	model = Figure
 	search_fields = ['name__icontains']
 
-	def label_from_instance(self):
+	def label_from_instance(self,obj):
 		return obj.name
 	
 	def get_queryset(self):
@@ -121,7 +121,7 @@ class EventWidget(ModelSelect2Widget):
 	model = Event
 	search_fields = ['name__icontains']
 
-	def label_from_instance(self):
+	def label_from_instance(self,obj):
 		return obj.name
 	
 	def get_queryset(self):
@@ -132,7 +132,7 @@ class EventsWidget(ModelSelect2MultipleWidget):
 	model = Event
 	search_fields = ['name__icontains']
 
-	def label_from_instance(self):
+	def label_from_instance(self,obj):
 		return obj.name
 	
 	def get_queryset(self):
@@ -143,7 +143,7 @@ class PurposesWidget(ModelSelect2MultipleWidget):
 	model = Purpose
 	search_fields = ['name__icontains']
 
-	def label_from_instance(self):
+	def label_from_instance(self,obj):
 		return obj.name
 	
 	def get_queryset(self):
@@ -154,7 +154,7 @@ class InstallationTypeWidget(ModelSelect2Widget):
 	model = InstallationType
 	search_fields = ['name__icontains']
 
-	def label_from_instance(self):
+	def label_from_instance(self,obj):
 		return obj.name
 	
 	def get_queryset(self):
@@ -165,7 +165,7 @@ class InstallationWidget(ModelSelect2Widget):
 	model = System
 	search_fields = [x + '__icontains' for x in names]
 	
-	def label_from_instance(self):
+	def label_from_instance(self,obj):
 		return obj.original_name
 
 	def get_queryset(self):
@@ -175,7 +175,7 @@ class LiteratureWidget(ModelSelect2Widget):
 	model = Literature
 	search_fields = ['name__icontains']
 
-	def label_from_instance(self):
+	def label_from_instance(self,obj):
 		return obj.name
 	
 	def get_queryset(self):
@@ -186,7 +186,7 @@ class TextTypeWidget(ModelSelect2Widget):
 	model = TextType
 	search_fields = ['name__icontains']
 
-	def label_from_instance(self):
+	def label_from_instance(self,obj):
 		return obj.name
 	
 	def get_queryset(self):
