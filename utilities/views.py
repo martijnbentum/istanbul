@@ -117,11 +117,11 @@ def edit_model(request, name_space, model_name, app_name, instance_id = None,
 @permission_required('utilities.add_generic')
 def add_simple_model(request, name_space,model_name,app_name, page_name, pk = None):
 	'''Function to add simple models with only a form could be extended.
-	request 	django object
-	name_space 	the name space of the module calling this function (to load forms / models)
-	model_name 	name of the model
-	app_name 	name of the app
-	page_name 	name of the page
+	request		django object
+	name_space	the name space of the module calling this function (to load forms / models)
+	model_name	name of the model
+	app_name	name of the app
+	page_name	name of the page
 	The form name should be of format <model_name>Form
 	'''
 	model = apps.get_model(app_name,model_name)
