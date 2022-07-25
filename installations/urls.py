@@ -15,5 +15,8 @@ urlpatterns = [
 	path('add_image/',views.edit_image, name = 'add_image'),
 	path('add_figure/',views.edit_figure, name = 'add_figure'),
 	path('add_style/',views.edit_style, name = 'add_style'),
+	path('edit_system/<int:pk>', views.edit_system, name = 'edit_system'),
+	path('edit_system/<int:pk>/<str:focus>', views.edit_system, 
+		name = 'edit_system'),
 	path('hello_world/',views.hello_world, name = 'hello_world'),
 ]
