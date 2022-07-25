@@ -13,15 +13,18 @@ class Helper:
 
 	def _set_values(self):
 		for sheet_name in self.wb.sheetnames:
-			if self.model_name != None and sheet_name.lower() != self.model_name.lower():continue
+			if self.model_name != None:
+				if sheet_name.lower() != self.model_name.lower():continue
 			self.model_helpers[sheet_name] = ModelHelper(self.wb,sheet_name)
 
 	def get_dict(self,name=None):
 		if self.model_name != None:name = self.model_name
+		model_helper = None
 		for key in self.model_helpers.keys():
 			if name.lower() == key.lower(): 
 				model_helper = self.model_helpers[key]
 				break
+		if not model_helper: return None
 		return model_helper._make_dict()
 
 	def get_json(self,name=None):
