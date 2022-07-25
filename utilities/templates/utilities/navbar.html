@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light">
   <a class="navbar-brand" href={% url 'utilities:list_view' 'System' 'installations'%}>
-	Region
+	Istanbul-su
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" 
 	data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
@@ -19,33 +19,43 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href=
-			"{% url 'utilities:list_view' 'System' 'installations' %}">System</a>
+			"{% url 'utilities:list_view' 'System' 'installations' %}">
+			System</a>
           <a class="dropdown-item" href=
 			"{% url 'utilities:list_view' 'Installation' 'installations'%}">
 			Installation</a>
           <a class="dropdown-item" href=
-			"{% url 'utilities:list_view' 'Person' 'installations' %}">Person</a>
+			"{% url 'utilities:list_view' 'Person' 'installations' %}">
+			Person</a>
           <a class="dropdown-item" href=
 			"{% url 'utilities:list_view' 'Institution' 'installations' %}">
 			Institution</a>
           <a class="dropdown-item" href=
-			"{% url 'utilities:list_view' 'Religion' 'installations' %}">Religion</a>
+			"{% url 'utilities:list_view' 'Religion' 'installations' %}">
+			Religion</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href=
-			"{% url 'utilities:list_view' 'Event' 'installations' %}">Event</a>
+			"{% url 'utilities:list_view' 'Event' 'installations' %}">
+			Event</a>
           <a class="dropdown-item" href=
-			"{% url 'utilities:list_view' 'Literature' 'installations' %}">Literature</a>
+			"{% url 'utilities:list_view' 'Literature' 'installations' %}">
+			Literature</a>
           <a class="dropdown-item" href=
-			"{% url 'utilities:list_view' 'Image' 'installations' %}">Image</a>
+			"{% url 'utilities:list_view' 'Image' 'installations' %}">
+			Image</a>
           <a class="dropdown-item" href=
-			"{% url 'utilities:list_view' 'Figure' 'installations' 100 %}">Figure</a>
+			"{% url 'utilities:list_view' 'Figure' 'installations' 100 %}">
+			Figure</a>
           <a class="dropdown-item" href=
-			"{% url 'utilities:list_view' 'Style' 'installations' 100 %}">Style</a>
+			"{% url 'utilities:list_view' 'Style' 'installations' 100 %}">
+			Style</a>
         </div>
       </li>
 
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
+			role="button" data-toggle="dropdown" aria-haspopup="true" 
+			aria-expanded="false">
           Add
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -80,7 +90,9 @@
 		  {% if user.username == '' %}
 		  {% else %}
 			<a class="nav-link" href="{% url 'logout' %}">
-				<i class="fas fa-sign-out-alt"></i><span class="sr-only">(current)</span></a>
+				<i class="fas fa-sign-out-alt"></i>
+				<span class="sr-only">(current)</span>
+			</a>
 		  {% endif %}
 		</li>
 	</ul>
