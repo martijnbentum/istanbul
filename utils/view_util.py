@@ -389,7 +389,7 @@ def make_tabs(tab_type,focus=0,focus_names = ''):
 		t = 'Event'
 		relations = Tab(t,focus)
 		return Tabs([minimize,relations],'minimize,relations',focus_names)
-	if tab_type == 'System':
+	if tab_type == 'system':
 		t = 'Installation'
 		relations = Tab(t,focus)
 		return Tabs([minimize,relations],'minimize,relations',focus_names)
