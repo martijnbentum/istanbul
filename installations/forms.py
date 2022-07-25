@@ -7,7 +7,7 @@ from .models import EventLiteratureRelation
 
 from .widgets import SystemWidget, ReligionWidget, GenderWidget, PersonsWidget
 from .widgets import InstitutionTypeWidget,InstitutionsWidget,ImagesWidget
-from .widgets import EventTypeWidget,StyleWidget,FigureWidget,
+from .widgets import EventTypeWidget,StyleWidget,FigureWidget
 from .widgets import InstallationTypeWidget,InstallationWidget
 from .widgets import TextTypeWidget,LiteratureWidget,PurposesWidget
 from .widgets import EventWidget, EventsWidget
@@ -19,29 +19,29 @@ dchar = {'widget':forms.TextInput(**dattr),'required':False}
 dchar_required = {'widget':forms.TextInput(**dattr),'required':True}
 dtext = {'widget':forms.Textarea(attrs={'style':'width:100%','rows':3}),
 	'required':False}
-dgps = {'widget':forms.NumberInput(**dattr,'required':False)}
+dgps = {'widget':forms.NumberInput(**dattr), 'required':False}
 dnumber= {'widget':forms.NumberInput(attrs={'style':'width:100%','rows':3}),
 	'required':False}
 dselect2 = make_select2_attr(input_length = 0)
 dselect2n2 = make_select2_attr(input_length = 2)
 
 
-class SystemForm(forms.Model):
+class SystemForm(forms.ModelForm):
 	original_name = forms.CharField(**dchar_required)
 	ottoman_name = forms.CharField(**dchar)
 	english_name = forms.CharField(**dchar)
 	turkish_name = forms.CharField(**dchar)
-	description = models.TextField(default = '')
-	comments = models.Charifield(**dtext)
+	description = forms.CharField(**dtext)
+	comments = forms.CharField(**dtext)
 
 	class Meta:
 		model = System
 		fields = 'original_name,ottoman_name,english_name,turkish_name'
-		fields = ',description,comments'
+		fields += ',description,comments'
 		fields = fields.split(',')
 
 
-class ReligionForm(forms.Model):
+class ReligionForm(forms.ModelForm):
 	name = forms.CharField(**dchar_required)
 	description = forms.CharField(**dtext)
 	comments = forms.CharField(**dtext)
@@ -65,9 +65,9 @@ class PersonForm(forms.ModelForm):
 		queryset = Gender.objects.all(),
 		widget = GenderWidget(**dselect2),
 		required = False)
-	religion = models.ModelChoiceField(
+	religion = forms.ModelChoiceField(
 		queryset = Religion.objects.all(),
-		widget = ReligionWidget(**dselect2)
+		widget = ReligionWidget(**dselect2),
 		required = False)
 	description = forms.CharField(**dtext)
 	comments = forms.CharField(**dtext)
@@ -75,11 +75,11 @@ class PersonForm(forms.ModelForm):
 	class Meta:
 		model = Person
 		fields = 'name,gender,birth_year,death_year,start_reign,end_reign'
-		fields = ',religion,description,comments'
+		fields += ',religion,description,comments'
 		fields = fields.split(',')
 
 
-class InstitutionType(forms.ModelForm):
+class InstitutionTypeForm(forms.ModelForm):
 	name = forms.CharField(**dchar_required)
 	description = forms.CharField(**dtext)
 	comments = forms.CharField(**dtext)
@@ -89,18 +89,18 @@ class InstitutionType(forms.ModelForm):
 		fields = 'name,description,comments'.split(',')
 
 
-class Institution(forms.ModelForm):
+class InstitutionForm(forms.ModelForm):
 	original_name = forms.CharField(**dchar_required)
 	ottoman_name = forms.CharField(**dchar)
 	english_name = forms.CharField(**dchar)
 	turkish_name = forms.CharField(**dchar)
-	institution_type = models.ModelChoiceField(
+	institution_type = forms.ModelChoiceField(
 		queryset = InstitutionType.objects.all(),
 		widget = InstitutionTypeWidget(**dselect2),
 		required = False)
-	religion = models.ModelChoiceField(
+	religion = forms.ModelChoiceField(
 		queryset = Religion.objects.all(),
-		widget = ReligionWidget(**dselect2)
+		widget = ReligionWidget(**dselect2),
 		required = False)
 	description = forms.CharField(**dtext)
 	comments = forms.CharField(**dtext)
@@ -108,11 +108,11 @@ class Institution(forms.ModelForm):
 	class Meta:
 		model = Institution
 		fields = 'original_name,ottoman_name,english_name,turkish_name'
-		fields = ',institution_type,religion,description,comments'
+		fields += ',institution_type,religion,description,comments'
 		fields = fields.split(',')
 
 
-class EventType(forms.ModelForm):
+class EventTypeForm(forms.ModelForm):
 	name = forms.CharField(**dchar_required)
 	description = forms.CharField(**dtext)
 	comments = forms.CharField(**dtext)
@@ -122,13 +122,13 @@ class EventType(forms.ModelForm):
 		fields = 'name,description,comments'.split(',')
 
 
-class Image(forms.ModelForm):
+class ImageForm(forms.ModelForm):
 	maker = forms.CharField(**dchar)
-	title = forms.CharField(**dchar
+	title = forms.CharField(**dchar)
 	url= forms.CharField(**dchar)
 	current_location= forms.CharField(**dchar)
 	collection = forms.CharField(**dchar)
-	description = models.CharField(**dtext)
+	description = forms.CharField(**dtext)
 	latitude = forms.DecimalField(**dgps)
 	longitude = forms.DecimalField(**dgps)
 	comments = forms.CharField(**dtext)
@@ -136,11 +136,11 @@ class Image(forms.ModelForm):
 	class Meta:
 		model = Image
 		fields = 'image_file,maker,year,title,url,current_location'
-		fields = ',collection,description,comments,latitude,longitude'
+		fields += ',collection,description,comments,latitude,longitude'
 		fields = fields.split(',')
 
 
-class Style(forms.ModelForm):
+class StyleForm(forms.ModelForm):
 	name = forms.CharField(**dchar_required)
 	line_thickness = forms.IntegerField(**dnumber)
 	fill_opacity = forms.FloatField(**dnumber)
@@ -150,13 +150,13 @@ class Style(forms.ModelForm):
 	class Meta:
 		model = Style
 		fields = 'name,color,line_thickness,fill_opacity,line_opacity'
-		fields = ',dashed,z_index'
+		fields += ',dashed,z_index'
 		fields = fields.split(',')
 	
 
-class Figure(forms.ModelForm):
+class FigureForm(forms.ModelForm):
 	name = forms.CharField(**dchar_required)
-	style = models.ModelChoiceField(
+	style = forms.ModelChoiceField(
 		queryset = Style.objects.all(),
 		widget = StyleWidget(**dselect2),
 		required = False)
@@ -166,40 +166,40 @@ class Figure(forms.ModelForm):
 		fields = 'name,geojson,style'.split(',')
 
 
-class Event(Forms.ModelForm):
-	name = models.CharField(**dchar_required)
-	event_type = models.ModelChoiceField(
+class EventForm(forms.ModelForm):
+	name = forms.CharField(**dchar_required)
+	event_type = forms.ModelChoiceField(
 		queryset = EventType.objects.all(),
 		widget = EventTypeWidget(**dselect2),
 		required = False)
-	persons= models.ModelMultipleChoiceField(
+	persons= forms.ModelMultipleChoiceField(
 		queryset = Person.objects.all(),
 		widget = PersonsWidget(**dselect2),
 		required = False)
-	institutions= models.ModelMultipleChoiceField(
+	institutions= forms.ModelMultipleChoiceField(
 		queryset = Person.objects.all(),
 		widget = PersonsWidget(**dselect2),
 		required = False)
-	date_comments = forms.TextField(**dtext)
-	images = models.ModelMultipleChoiceField(
+	date_comments = forms.CharField(**dtext)
+	images = forms.ModelMultipleChoiceField(
 		queryset = Image.objects.all(),
 		widget = ImagesWidget(**dselect2),
 		required = False)
-	figure = models.ModelChoiceField(
+	figure = forms.ModelChoiceField(
 		queryset = Figure.objects.all(),
 		widget = FigureWidget(**dselect2),
 		required = False)
-	description = forms.TextField(**dtext)
-	comments = forms.TextField(**dtext
+	description = forms.CharField(**dtext)
+	comments = forms.CharField(**dtext)
 
 	class Meta:
 		model = Event
 		fields = 'name,start_date,end_date,date_comments,images'
-		fields = ',figure,description,comments,event_type,persons'
-		fields = ',institutions'
+		fields += ',figure,description,comments,event_type,persons'
+		fields += ',institutions'
 		fields = fields.split(',')
 
-class Purpose(forms.ModelForm):
+class PurposeForm(forms.ModelForm):
 	name = forms.CharField(**dchar_required)
 	description = forms.CharField(**dtext)
 	comments = forms.CharField(**dtext)
@@ -209,7 +209,7 @@ class Purpose(forms.ModelForm):
 		fields = 'name,description,comments'.split(',')
 
 
-class InstallationType(forms.ModelForm):
+class InstallationTypeForm(forms.ModelForm):
 	name = forms.CharField(**dchar_required)
 	description = forms.CharField(**dtext)
 	comments = forms.CharField(**dtext)
@@ -224,30 +224,30 @@ class InstallationForm(forms.ModelForm):
 	ottoman_name = forms.CharField(**dchar)
 	english_name = forms.CharField(**dchar)
 	turkish_name = forms.CharField(**dchar)
-	installation_type = models.ModelChoiceField(
+	installation_type = forms.ModelChoiceField(
 		queryset = InstallationType.objects.all(),
 		widget = InstallationTypeWidget(**dselect2),
 		required = False)
-	events = models.ModelMultipleChoiceField(
+	events = forms.ModelMultipleChoiceField(
 		queryset = Event.objects.all(),
 		widget = EventsWidget(**dselect2),
 		required = False)
-	purposes = models.ModelMultipleChoiceField(
+	purposes = forms.ModelMultipleChoiceField(
 		queryset = Purpose.objects.all(),
 		widget = PurposesWidget(**dselect2),
 		required = False)
-	description = models.TextField(default = '')
-	comments = models.Charifield(**dtext)
+	description = forms.CharField(**dtext)
+	comments = forms.CharField(**dtext)
 
 	class Meta:
 		model = Installation
 		fields = 'original_name,ottoman_name,english_name,turkish_name'
-		fields = ',installation_type,events,purposes,description,comments'
-		fields = ',still_exists'
+		fields += ',installation_type,events,purposes,description,comments'
+		fields += ',still_exists'
 		fields = fields.split(',')
 
 
-class Literature(forms.ModelForm):
+class LiteratureForm(forms.ModelForm):
 	code = forms.CharField(**dchar)
 	title= forms.CharField(**dchar_required)
 	author= forms.CharField(**dchar)
@@ -257,25 +257,25 @@ class Literature(forms.ModelForm):
 	year= forms.CharField(**dchar)
 	journal= forms.CharField(**dchar)
 	volume= forms.CharField(**dchar)
-	page_numbers= fomrs.CharField(**dchar)
+	page_numbers= forms.CharField(**dchar)
 	issue= forms.CharField(**dchar)
-	description = forms.TextField(**dtext)
-	comments = forms.TextField(**dtext)
+	description = forms.CharField(**dtext)
+	comments = forms.CharField(**dtext)
 	
 	class Meta:
 		model = Literature
 		fields = 'code,title,author,editor'
-		fields = ',publisher,place,year,journal,volume'
-		fields = ',page_numbers,issue,description,comments'
+		fields += ',publisher,place,year,journal,volume'
+		fields += ',page_numbers,issue,description,comments'
 		fields = fields.split(',')
 
 
-class SystemInstallationRelation(forms.ModelForm):
-	system = models.ModelChoiceField(
+class SystemInstallationRelationForm(forms.ModelForm):
+	system = forms.ModelChoiceField(
 		queryset = System.objects.all(),
 		widget = SystemWidget(**dselect2),
 		required = False)
-	installation= models.ModelChoiceField(
+	installation= forms.ModelChoiceField(
 		queryset = Installation.objects.all(),
 		widget = InstallationWidget(**dselect2),
 		required = False)
@@ -285,11 +285,11 @@ class SystemInstallationRelation(forms.ModelForm):
 	class Meta:
 		model = SystemInstallationRelation
 		fields = 'system,installation,start_date,end_date'
-		fields = ',description,comments,is_part_of'
+		fields += ',description,comments,is_part_of'
 		fields = fields.split(',')
 
 
-class TextType(forms.ModelForm):
+class TextTypeForm(forms.ModelForm):
 	name = forms.CharField(**dchar_required)
 
 	class Meta:
@@ -297,18 +297,18 @@ class TextType(forms.ModelForm):
 		fields = ['name']
 
 
-class EventLiteratureRelation(forms.ModelForm):
-	event = models.ModelChoiceField(
+class EventLiteratureRelationForm(forms.ModelForm):
+	event = forms.ModelChoiceField(
 		queryset = Event.objects.all(),
 		widget = EventWidget(**dselect2),
 		required = False)
-	literature = models.ModelChoiceField(
+	literature = forms.ModelChoiceField(
 		queryset = Literature.objects.all(),
 		widget = LiteratureWidget(**dselect2),
 		required = False)
 	page_number= forms.CharField(**dchar)
 	text = forms.CharField(**dtext)
-	text_type = models.ModelChoiceField(
+	text_type = forms.ModelChoiceField(
 		queryset = TextType.objects.all(),
 		widget = TextTypeWidget(**dselect2),
 		required = False)
@@ -316,5 +316,5 @@ class EventLiteratureRelation(forms.ModelForm):
 	class Meta:
 		model = EventLiteratureRelation(forms.ModelForm)
 		fields = 'event,literature,page_number,text'
-		fields = ',text_file,text_type'
+		fields += ',text_file,text_type'
 		fields = fields.split(',')
