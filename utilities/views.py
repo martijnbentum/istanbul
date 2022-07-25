@@ -102,7 +102,7 @@ def edit_model(request, name_space, model_name, app_name, instance_id = None,
 	if not ffm: ffm = FormsetFactoryManager(name_space,names,instance=instance)
 	print('(after post formset factory manager / form making done',delta(start))
 	tabs = make_tabs(model_name.lower(), focus_names = focus)
-	print('tabs made',delta(start))
+	print('tabs made',delta(start), tabs)
 	page_name = 'Edit ' +model_name.lower() if instance_id else 'Add ' +model_name.lower()
 	helper = help_util.Helper(model_name=model_name)
 	print('helper made',delta(start))
@@ -147,7 +147,7 @@ def add_simple_model(request, name_space,model_name,app_name, page_name, pk = No
 	return render(request, 'utilities/add_simple_model.html',var)
 
 @permission_required('utilities.delete_generic')
-def delete_model(request, name_space, model_name, app_name, pk, close = False):
+def delete_model(request, model_name, app_name, pk, close = False):
 	model = apps.get_model(app_name,model_name)
 	instance= get_object_or_404(model,id =pk)
 	focus, button = getfocus(request), getbutton(request)
