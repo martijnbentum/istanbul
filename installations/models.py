@@ -1,11 +1,12 @@
 from django.db import models
 from partial_date import PartialDateField
 from colorfield.fields import ColorField
+from utils.model_util import info
 
 
 dargs = {'on_delete':models.SET_NULL,'blank':True,'null':True}
 
-class System(models.Model):
+class System(models.Model, info):
 	original_name = models.CharField(max_length=1000,blank=True,null=True)
 	ottoman_name = models.CharField(max_length=1000,blank=True,null=True)
 	english_name = models.CharField(max_length=1000,blank=True,null=True)
@@ -13,15 +14,15 @@ class System(models.Model):
 	description = models.TextField(default = '')
 	comments = models.TextField(default = '')
 
-class Religion(models.Model):
+class Religion(models.Model, info):
 	name = models.CharField(max_length=300,blank=True,null=True)
 	description = models.TextField(default = '')
 	comments = models.TextField(default = '')
 
-class Gender(models.Model):
+class Gender(models.Model, info):
 	name = models.CharField(max_length=300,blank=True,null=True)
 
-class Person(models.Model):
+class Person(models.Model, info):
 	name = models.CharField(max_length=300,blank=True,null=True)
 	gender = models.ForeignKey(Gender,**dargs)
 	birth_year = PartialDateField(null=True,blank=True)
@@ -32,12 +33,12 @@ class Person(models.Model):
 	description = models.TextField(default = '')
 	comments = models.TextField(default = '')
 
-class InstitutionType(models.Model):
+class InstitutionType(models.Model, info):
 	name = models.CharField(max_length=300,blank=True,null=True)
 	description = models.TextField(default = '')
 	comments = models.TextField(default = '')
 
-class Institution(models.Model):
+class Institution(models.Model, info):
 	original_name = models.CharField(max_length=1000,blank=True,null=True)
 	ottoman_name = models.CharField(max_length=1000,blank=True,null=True)
 	english_name = models.CharField(max_length=1000,blank=True,null=True)
@@ -47,12 +48,12 @@ class Institution(models.Model):
 	description = models.TextField(default = '')
 	comments = models.TextField(default = '')
 
-class EventType(models.Model):
+class EventType(models.Model, info):
 	name = models.CharField(max_length=300,blank=True,null=True)
 	description = models.TextField(default = '')
 	comments = models.TextField(default = '')
 
-class Image(models.Model):
+class Image(models.Model, info):
 	gpsargs = {'blank':True,'null':True,'max_digits':8,'decimal_places':5}
 	image_file = models.FileField(upload_to='IMAGES/',null=True,blank=True)
 	maker = models.CharField(max_length=300,blank=True,null=True)
@@ -66,7 +67,7 @@ class Image(models.Model):
 	longitude = models.DecimalField(**gpsargs)
 	comments = models.TextField(default = '')
 
-class Style(models.Model):
+class Style(models.Model, info):
 	name = models.CharField(max_length=300)
 	color = ColorField(default='#FF0000')
 	line_thickness = models.IntegerField(default = 2)
@@ -75,12 +76,12 @@ class Style(models.Model):
 	dashed = models.BooleanField(default =False) 
 	z_index = models.IntegerField(default = 0)
 	
-class Figure(models.Model):
+class Figure(models.Model, info):
 	name = models.CharField(max_length=300,blank=True,null=True)
 	geojson= models.FileField(upload_to='GEOJSON/',null=True,blank=True)
 	style = models.ForeignKey(Style,**dargs)
 
-class Event(models.Model):
+class Event(models.Model, info):
 	name = models.CharField(max_length=300,blank=True,null=True)
 	event_type = models.ForeignKey(EventType,**dargs)
 	persons= models.ManyToManyField(Person,blank=True,default= None)
@@ -93,18 +94,18 @@ class Event(models.Model):
 	description = models.TextField(default = '')
 	comments = models.TextField(default = '')
 
-class Purpose(models.Model):
+class Purpose(models.Model, info):
 	name = models.CharField(max_length=300,blank=True,null=True)
 	description = models.TextField(default = '')
 	comments = models.TextField(default = '')
 
-class InstallationType(models.Model):
+class InstallationType(models.Model, info):
 	name = models.CharField(max_length=300,blank=True,null=True)
 	description = models.TextField(default = '')
 	comments = models.TextField(default = '')
 	
 
-class Installation(models.Model):
+class Installation(models.Model, info):
 	original_name = models.CharField(max_length=1000,blank=True,null=True)
 	ottoman_name = models.CharField(max_length=1000,blank=True,null=True)
 	english_name = models.CharField(max_length=1000,blank=True,null=True)
@@ -116,7 +117,7 @@ class Installation(models.Model):
 	comments = models.TextField(default = '')
 	still_exists = models.BooleanField(blank=True,null=True)
 
-class Literature(models.Model):
+class Literature(models.Model, info):
 	code = models.CharField(max_length=300,blank=True,null=True)
 	title= models.CharField(max_length=300,blank=True,null=True)
 	author= models.CharField(max_length=300,blank=True,null=True)
@@ -131,7 +132,7 @@ class Literature(models.Model):
 	description = models.TextField(default = '')
 	comments = models.TextField(default = '')
 	
-class SystemInstallationRelation(models.Model):
+class SystemInstallationRelation(models.Model, info):
 	system = models.ForeignKey(System,**dargs)
 	installation = models.ForeignKey(Installation,**dargs)
 	start_date = PartialDateField(null=True,blank=True)
@@ -140,10 +141,10 @@ class SystemInstallationRelation(models.Model):
 	comments = models.TextField(default = '')
 	is_part_of = models.BooleanField(blank=True,null=True)
 
-class TextType(models.Model):
+class TextType(models.Model, info):
 	name = models.CharField(max_length=100,blank=True,null=True)
 
-class EventLiteratureRelation(models.Model):
+class EventLiteratureRelation(models.Model, info):
 	event = models.ForeignKey(Event,**dargs)
 	literature = models.ForeignKey(Literature,**dargs)
 	page_number= models.CharField(max_length=100,blank=True,null=True)
