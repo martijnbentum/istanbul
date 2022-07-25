@@ -318,3 +318,14 @@ class EventLiteratureRelationForm(forms.ModelForm):
 		fields = 'event,literature,page_number,text'
 		fields += ',text_file,text_type'
 		fields = fields.split(',')
+
+
+
+# formsets
+systeminstallation_formset = forms.inlineformset_factory(
+	System,SystemInstallationRelation,
+	form = SystemInstallationRelationForm, extra = 1)
+installationsystem_formset = forms.inlineformset_factory(
+	Installation,SystemInstallationRelation,
+	form = SystemInstallationRelationForm, extra = 1)
+
