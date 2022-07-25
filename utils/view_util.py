@@ -1,8 +1,7 @@
 from django.apps import apps
 import inspect
 import sys
-# easy audit is not yet compatible with django 4
-# from easyaudit.models import CRUDEvent
+from easyaudit.models import CRUDEvent
 from utils import signal_util
 from .model_util import instance2name, instance2names
 
@@ -75,7 +74,6 @@ class FormsetFactoryManager:
 		return self.valid
 
 
-'''
 class Cruds:
 	def __init__(self,app_name,model_name, related_name = ''):
 		self.app_name = app_name
@@ -251,7 +249,6 @@ class Crud:
 	def last_update_by(self):
 		if len(self.events) == 0: return 'user unknown'
 		return self.events[0].username
-'''
 
 class Event:
 	def __init__(self,e, related_name = '',related_instance = None):
