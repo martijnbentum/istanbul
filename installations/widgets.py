@@ -173,13 +173,13 @@ class InstallationWidget(ModelSelect2Widget):
 
 class LiteratureWidget(ModelSelect2Widget):
 	model = Literature
-	search_fields = ['name__icontains']
+	search_fields = ['title__icontains']
 
 	def label_from_instance(self,obj):
-		return obj.name
+		return obj.title
 	
 	def get_queryset(self):
-		return Literature.objects.all().order_by('name')
+		return Literature.objects.all().order_by('title')
 
 
 class TextTypeWidget(ModelSelect2Widget):
