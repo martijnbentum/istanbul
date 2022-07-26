@@ -376,6 +376,12 @@ class Tabs:
 			else: self.focus = focus_names
 		else: self.focus = [t.focus for t in self.tabs]
 
+	def __str__(self):
+		m = '\nnames:\t' + ' '.join(self.names) + '\n'
+		m += 'focus:\t' + ' '.join(self.focus) + '\n'
+		m += 'tabs:\t' + str(self.tabs) + '\n'
+		return m
+
 
 def make_tabs(tab_type,focus=0,focus_names = ''):
 	minimize = Tab('Edit,Minimize',focus)
