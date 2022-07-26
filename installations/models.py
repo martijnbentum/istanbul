@@ -85,8 +85,6 @@ class Figure(models.Model, info):
 class Event(models.Model, info):
 	name = models.CharField(max_length=300,blank=True,null=True)
 	event_type = models.ForeignKey(EventType,**dargs)
-	persons= models.ManyToManyField(Person,blank=True,default= None)
-	institutions= models.ManyToManyField(Institution,blank=True,default= None)
 	start_date = PartialDateField(null=True,blank=True)
 	end_date = PartialDateField(null=True,blank=True)
 	date_comments = models.TextField(default = '')
