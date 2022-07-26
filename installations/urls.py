@@ -39,4 +39,13 @@ urlpatterns = [
 	path('edit_religion/<int:pk>', views.edit_religion, name = 'edit_religion'),
 	path('edit_religion/<int:pk>/<str:focus>', views.edit_religion, 
 		name = 'edit_religion'),
+	path('edit_image/<int:pk>', views.edit_image, name = 'edit_image'),
+	path('edit_image/<int:pk>/<str:focus>', views.edit_image, 
+		name = 'edit_image'),
+	path('edit_figure/<int:pk>', views.edit_figure, name = 'edit_figure'),
+	path('edit_figure/<int:pk>/<str:focus>', views.edit_figure, 
+		name = 'edit_figure'),
+	path('edit_style/<int:pk>', views.edit_style, name = 'edit_style'),
+	path('edit_style/<int:pk>/<str:focus>', views.edit_style, 
+		name = 'edit_style'),
 ]

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import System
 from .forms import SystemForm, PersonForm, InstallationForm 
 from .forms import EventForm, LiteratureForm, InstitutionForm
-from .forms import ReligionForm
+from .forms import ReligionForm, ImageForm, FigureForm, StyleForm
 from .forms import systeminstallation_formset, installationsystem_formset
 from .forms import eventliterature_formset, literatureevent_formset
 from .forms import eventperson_formset, personevent_formset
