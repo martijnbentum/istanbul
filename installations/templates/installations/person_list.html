@@ -8,7 +8,7 @@
 {% block content %}
 {% include 'utilities/list_search_bar.html' %}
 
-{% if system_list %}
+{% if person_list %}
 <br>
 
 <div class="d-flex">
@@ -23,8 +23,8 @@
     </tr>
     {% for person in person_list %}
 
-        <td>{{system.name}}</td>
-        <td>{{system.gender}}</td>
+        <td>{{person.name}}</td>
+        <td>{{person.gender.name}}</td>
         <td style="white-space:nowrap;">
             <a class = "btn btn-link btn-sm ml-auto" 
 	href ="{% url 'utilities:delete_model' person.pk 'Person' 'installations' %}"
@@ -43,7 +43,7 @@
 </div>
 
 {% else %}
-    <p>no systems are available</p>
+    <p>no persons are available</p>
 {% endif %}
 
 {% endblock content %}
