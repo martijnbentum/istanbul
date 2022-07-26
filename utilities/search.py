@@ -489,7 +489,7 @@ def get_foreign_keydict():
 	m = 'system:original_name,installation:original_name,literature:title'
 	m += ',institution:original_name,image:title,purpose:name'
 	m += ',person:name,religion:name,event_type:name,institution_type:name'
-	m += ',text_type:name,figure:name,style:name'
+	m += ',text_type:name,figure:name,style:name,event:name'
 	return make_dict(m)
 
 
