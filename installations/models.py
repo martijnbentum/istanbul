@@ -71,11 +71,11 @@ class Image(models.Model, info):
 class Style(models.Model, info):
 	name = models.CharField(max_length=300)
 	color = ColorField(default='#FF0000')
-	line_thickness = models.IntegerField(default = 2)
-	fill_opacity = models.FloatField(default = 0.3)
-	line_opacity = models.FloatField(default = 0.3)
+	line_thickness = models.IntegerField(default = 2,blank=True,null=True)
+	fill_opacity = models.FloatField(default = 0.3, blank=True,null=True)
+	line_opacity = models.FloatField(default = 0.3, blank=True,null=True)
 	dashed = models.BooleanField(default =False) 
-	z_index = models.IntegerField(default = 0)
+	z_index = models.IntegerField(default = 0, blank=True,null=True)
 	
 class Figure(models.Model, info):
 	name = models.CharField(max_length=300,blank=True,null=True)
