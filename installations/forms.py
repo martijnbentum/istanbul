@@ -175,14 +175,6 @@ class EventForm(forms.ModelForm):
 		queryset = EventType.objects.all(),
 		widget = EventTypeWidget(**dselect2),
 		required = False)
-	persons= forms.ModelMultipleChoiceField(
-		queryset = Person.objects.all(),
-		widget = PersonsWidget(**dselect2),
-		required = False)
-	institutions= forms.ModelMultipleChoiceField(
-		queryset = Person.objects.all(),
-		widget = PersonsWidget(**dselect2),
-		required = False)
 	date_comments = forms.CharField(**dtext)
 	images = forms.ModelMultipleChoiceField(
 		queryset = Image.objects.all(),
@@ -198,8 +190,7 @@ class EventForm(forms.ModelForm):
 	class Meta:
 		model = Event
 		fields = 'name,start_date,end_date,date_comments,images'
-		fields += ',figure,description,comments,event_type,persons'
-		fields += ',institutions'
+		fields += ',figure,description,comments,event_type'
 		fields = fields.split(',')
 
 class PurposeForm(forms.ModelForm):
