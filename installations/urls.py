@@ -36,5 +36,7 @@ urlpatterns = [
 		name = 'edit_literature'),
 	path('edit_literature/<int:pk>/<str:focus>', views.edit_literature, 
 		name = 'edit_system'),
-	path('hello_world/',views.hello_world, name = 'hello_world'),
+	path('edit_religion/<int:pk>', views.edit_religion, name = 'edit_religion'),
+	path('edit_religion/<int:pk>/<str:focus>', views.edit_religion, 
+		name = 'edit_religion'),
 ]
