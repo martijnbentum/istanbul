@@ -6,6 +6,11 @@ from utils.model_util import info
 
 dargs = {'on_delete':models.SET_NULL,'blank':True,'null':True}
 
+class Religion(models.Model, info):
+	name = models.CharField(max_length=300,blank=True,null=True)
+	description = models.TextField(default = '')
+	comments = models.TextField(default = '')
+
 class System(models.Model, info):
 	original_name = models.CharField(max_length=1000,blank=True,null=True)
 	ottoman_name = models.CharField(max_length=1000,blank=True,null=True)
@@ -14,10 +19,6 @@ class System(models.Model, info):
 	description = models.TextField(default = '')
 	comments = models.TextField(default = '')
 
-class Religion(models.Model, info):
-	name = models.CharField(max_length=300,blank=True,null=True)
-	description = models.TextField(default = '')
-	comments = models.TextField(default = '')
 
 class Gender(models.Model, info):
 	name = models.CharField(max_length=300,blank=True,null=True)
