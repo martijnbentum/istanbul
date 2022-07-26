@@ -16,13 +16,12 @@
     <h4 class="mt-2">{{page_name}}</h4>
 
     {% if view != "inline" %}
-        {% if page_name == "Edit System"%}
+        {% if page_name == "Edit system"%}
             <a class ="btn btn-link ml-auto" 
 				href="{% url 'installations:add_system' %}"
                 role="button">
 					<i class="fa fa-plus"></i>
 			</a>
-            {% include 'utilities/detail_view_link.html' %}
         {% endif %}
         <a class ="btn btn-link ml-auto"
             href="{% url 'utilities:list_view' 'System' 'installations'%}"
@@ -70,20 +69,6 @@
 					{{form.turkish_name}} 
 					{{from.turkish_name.error}}
 				</td>
-            </tr>
-            <tr class="d-flex">
-                <th class="col-2">-</th>
-                <td class="col-8">
-					{{form.categories}} 
-					{{form.categories.error}}
-				</td>
-                <!--typemaster can add edit and delete catogory type entries -->
-                {% if request.user|has_group:"typemaster" %}
-                    <td><a class = "btn btn-link btn-sm ml-auto" target = "_blank"
-                            href ="{% url 'catalogue:add_illustration_category'%}"
-                            role="button"><i class="fa fa-plus"></i></a>
-                    </td>
-                {% endif %}
             </tr>
             <tr class="d-flex">
                 <th class="col-2">description</th>
@@ -138,6 +123,7 @@
                 <th><i class="fa fa-times text-danger"></i></th>
             </tr>
             {% for f in systeminstallation_formset.forms %}
+				{{f.media.css}}
                 <tr class ="d-flex">
                     <td class="col-4">
 						{{f.installation}} 
@@ -157,10 +143,11 @@
 					</td>
                     <td class="col-1">{{f.DELETE}} {{f.id}}</td>
                 </tr>
-				
+			{{f.media.js}}
             {% endfor %}
         </table>
     </div>
+</div>
 
 {% endif %}
 
