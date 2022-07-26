@@ -2,14 +2,13 @@ from django.shortcuts import render
 from .models import System
 from .forms import SystemForm, PersonForm, InstallationForm 
 from .forms import EventForm, LiteratureForm, InstitutionForm
+from .forms import ReligionForm
 from .forms import systeminstallation_formset, installationsystem_formset
 from .forms import eventliterature_formset, literatureevent_formset
 from .forms import eventperson_formset, personevent_formset
 from .forms import eventinstitution_formset, institutionevent_formset
 from utilities.views import edit_model
 
-def hello_world(request):
-	return render(request,'installations/hello_world.html')
 
 # Create your views here.
 def edit_system(request, pk = None, focus = '', view = 'complete'):
