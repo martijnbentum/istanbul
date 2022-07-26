@@ -3,14 +3,17 @@ from .models import System, Religion, Gender, Person, InstitutionType
 from .models import Institution,EventType,Image,Style,Figure,Event
 from .models import Purpose,InstallationType,Installation,Literature
 from .models import SystemInstallationRelation,TextType
-from .models import EventLiteratureRelation
+from .models import EventLiteratureRelation, EventRole
+from .models import EventInstitutionRelation,EventPersonRelation
+
 
 from .widgets import SystemWidget, ReligionWidget, GenderWidget, PersonsWidget
 from .widgets import InstitutionTypeWidget,InstitutionsWidget,ImagesWidget
+from .widgets import InstitutionWidget, EventRoleWidget
 from .widgets import EventTypeWidget,StyleWidget,FigureWidget
 from .widgets import InstallationTypeWidget,InstallationWidget
 from .widgets import TextTypeWidget,LiteratureWidget,PurposesWidget
-from .widgets import EventWidget, EventsWidget
+from .widgets import EventWidget, EventsWidget, PersonWidget
 from utils.select2 import  make_select2_attr
 
 
@@ -314,11 +317,48 @@ class EventLiteratureRelationForm(forms.ModelForm):
 		required = False)
 
 	class Meta:
-		model = EventLiteratureRelation(forms.ModelForm)
+		model = EventLiteratureRelation
 		fields = 'event,literature,page_number,text'
 		fields += ',text_file,text_type'
 		fields = fields.split(',')
 
+class EventInstitutionRelationForm(forms.ModelForm):
+	event = forms.ModelChoiceField(
+		queryset = Event.objects.all(),
+		widget = EventWidget(**dselect2),
+		required = False)
+	institution= forms.ModelChoiceField(
+		queryset = Institution.objects.all(),
+		widget = InstitutionWidget(**dselect2),
+		required = False)
+	role = forms.ModelChoiceField(
+		queryset = EventRole.objects.all(),
+		widget = EventRoleWidget(**dselect2),
+		required = False)
+
+	class Meta:
+		model = EventInstitutionRelation
+		fields = 'event,institution,role'
+		fields = fields.split(',')
+
+class EventPersonRelationForm(forms.ModelForm):
+	event = forms.ModelChoiceField(
+		queryset = Event.objects.all(),
+		widget = EventWidget(**dselect2),
+		required = False)
+	person= forms.ModelChoiceField(
+		queryset = Person.objects.all(),
+		widget = PersonWidget(**dselect2),
+		required = False)
+	role = forms.ModelChoiceField(
+		queryset = EventRole.objects.all(),
+		widget = EventRoleWidget(**dselect2),
+		required = False)
+
+	class Meta:
+		model = EventPersonRelation
+		fields = 'event,person,role'
+		fields = fields.split(',')
 
 
 # formsets
@@ -335,3 +375,17 @@ eventliterature_formset = forms.inlineformset_factory(
 literatureevent_formset = forms.inlineformset_factory(
 	Literature,EventLiteratureRelation,
 	form = EventLiteratureRelationForm, extra = 1)
+
+eventinstitution_formset = forms.inlineformset_factory(
+	Event,EventInstitutionRelation,
+	form = EventInstitutionRelationForm, extra = 1)
+institutionevent_formset = forms.inlineformset_factory(
+	Institution,EventInstitutionRelation,
+	form = EventInstitutionRelationForm, extra = 1)
+
+eventperson_formset = forms.inlineformset_factory(
+	Event,EventPersonRelation,
+	form = EventPersonRelationForm, extra = 1)
+personevent_formset = forms.inlineformset_factory(
+	Person,EventPersonRelation,
+	form = EventPersonRelationForm, extra = 1)
