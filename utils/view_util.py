@@ -387,8 +387,16 @@ def make_tabs(tab_type,focus=0,focus_names = ''):
 	minimize = Tab('Edit,Minimize',focus)
 	print(tab_type)
 	if focus_names == 'default': focus_names=''
+	if tab_type == 'person':
+		t = 'Event'
+		relations = Tab(t,focus)
+		return Tabs([minimize,relations],'minimize,relations',focus_names)
+	if tab_type == 'institution':
+		t = 'Event'
+		relations = Tab(t,focus)
+		return Tabs([minimize,relations],'minimize,relations',focus_names)
 	if tab_type == 'event':
-		t = 'Literature'
+		t = 'Literature,Person,Institution'
 		relations = Tab(t,focus)
 		return Tabs([minimize,relations],'minimize,relations',focus_names)
 	if tab_type == 'literature':
