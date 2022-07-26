@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from .models import System
 from .forms import SystemForm, PersonForm, InstallationForm 
-from .forms import EventForm
+from .forms import EventForm, LiteratureForm, InstitutionForm
 from .forms import systeminstallation_formset, installationsystem_formset
 from .forms import eventliterature_formset, literatureevent_formset
+from .forms import eventperson_formset, personevent_formset
+from .forms import eventinstitution_formset, institutionevent_formset
 from utilities.views import edit_model
 
 def hello_world(request):
@@ -21,12 +23,12 @@ def edit_installation(request, pk = None, focus = '', view = 'complete'):
 		formset_names = names, focus = focus, view = view)
 
 def edit_person(request, pk = None, focus = '', view = 'complete'):
-	names = ''
+	names = 'personevent_formset'
 	return edit_model(request, __name__, 'Person','installations',pk,
 		formset_names = names, focus = focus, view = view)
 
 def edit_institution(request, pk = None, focus = '', view = 'complete'):
-	names = ''
+	names = 'institutionevent_formset'
 	return edit_model(request, __name__, 'Institution','installations',pk,
 		formset_names = names, focus = focus, view = view)
 
@@ -36,12 +38,12 @@ def edit_religion(request, pk = None, focus = '', view = 'complete'):
 		formset_names = names, focus = focus, view = view)
 
 def edit_event(request, pk = None, focus = '', view = 'complete'):
-	names = 'eventliterature_formset'
+	names = 'eventliterature_formset,eventperson_formset,eventinstitution_formset'
 	return edit_model(request, __name__, 'Event','installations',pk,
 		formset_names = names, focus = focus, view = view)
 
 def edit_literature(request, pk = None, focus = '', view = 'complete'):
-	names = ''
+	names = 'literatureevent_formset'
 	return edit_model(request, __name__, 'Literature','installations',pk,
 		formset_names = names, focus = focus, view = view)
 

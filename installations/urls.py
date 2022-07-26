@@ -28,5 +28,13 @@ urlpatterns = [
 		name = 'edit_installation'),
 	path('edit_installation/<int:pk>/<str:focus>', views.edit_installation, 
 		name = 'edit_installation'),
+	path('edit_institution/<int:pk>', views.edit_institution, 
+		name = 'edit_institution'),
+	path('edit_institution/<int:pk>/<str:focus>', views.edit_institution, 
+		name = 'edit_institution'),
+	path('edit_literature/<int:pk>', views.edit_literature, 
+		name = 'edit_literature'),
+	path('edit_literature/<int:pk>/<str:focus>', views.edit_literature, 
+		name = 'edit_system'),
 	path('hello_world/',views.hello_world, name = 'hello_world'),
 ]
