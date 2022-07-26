@@ -145,6 +145,9 @@ class SystemInstallationRelation(models.Model, info):
 class TextType(models.Model, info):
 	name = models.CharField(max_length=100,blank=True,null=True)
 
+class EventRole(models.Model, info):
+	name = models.CharField(max_length=100,blank=True,null=True)
+
 class EventLiteratureRelation(models.Model, info):
 	event = models.ForeignKey(Event,**dargs)
 	literature = models.ForeignKey(Literature,**dargs)
@@ -152,5 +155,14 @@ class EventLiteratureRelation(models.Model, info):
 	text = models.TextField(default = '')
 	text_file = models.FileField(upload_to='FILES/',null=True,blank=True)
 	text_type = models.ForeignKey(TextType,**dargs)
+
+class EventInstitutionRelation(models.Model, info):
+	event = models.ForeignKey(Event, **dargs)
+	institution= models.ForeignKey(Institution, **dargs)
+	role = models.ForeignKey(EventRole, **dargs)
 	
+class EventPersonRelation(models.Model, info):
+	event = models.ForeignKey(Event, **dargs)
+	person= models.ForeignKey(Person, **dargs)
+	role = models.ForeignKey(EventRole, **dargs)
 
