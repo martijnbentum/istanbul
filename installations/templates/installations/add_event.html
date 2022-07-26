@@ -57,20 +57,6 @@
 				</td>
             </tr>
             <tr class="d-flex">
-                <th class="col-2">persons</th>
-                <td class="col-8">
-					{{form.persons}} 
-					{{from.persons.error}}
-				</td>
-            </tr>
-            <tr class="d-flex">
-                <th class="col-2">institutions</th>
-                <td class="col-8">
-					{{form.institutions}} 
-					{{from.institutions.error}}
-				</td>
-            </tr>
-            <tr class="d-flex">
                 <th class="col-2">start_date</th>
                 <td class="col-8">
 					{{form.start_date}} 
@@ -182,6 +168,69 @@
             {% endfor %}
         </table>
     </div>
+
+    <div class="tab-pane fade" id="Person">
+        {{eventperson_formset.management_form}}
+        <table class="table table-borderless table-sm">
+            <tr class ="d-flex">
+                <th class="col-4">person
+                    <a class = "btn btn-link btn-sm ml-auto" target = "_blank"
+                        href ="{% url 'installations:add_person'  %}" 
+						role="button">
+                        <i class="fa fa-plus"></i></a>
+                </th>
+                <th class="col-3">role</th>
+                <th><i class="fa fa-times text-danger"></i></th>
+            </tr>
+            {% for f in eventperson_formset.forms %}
+				{{f.media.css}}
+                <tr class ="d-flex">
+                    <td class="col-4">
+						{{f.person}} 
+						{{f.person.errors}}
+					</td>
+                    <td class="col-3">
+						{{f.role}} 
+						{{f.role.errors}}
+					</td>
+                    <td class="col-1">{{f.DELETE}} {{f.id}}</td>
+                </tr>
+			{{f.media.js}}
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="tab-pane fade" id="Institution">
+        {{eventinstitution_formset.management_form}}
+        <table class="table table-borderless table-sm">
+            <tr class ="d-flex">
+                <th class="col-4">institution
+                    <a class = "btn btn-link btn-sm ml-auto" target = "_blank"
+                        href ="{% url 'installations:add_institution'  %}" 
+						role="button">
+                        <i class="fa fa-plus"></i></a>
+                </th>
+                <th class="col-3">role</th>
+                <th><i class="fa fa-times text-danger"></i></th>
+            </tr>
+            {% for f in eventinstitution_formset.forms %}
+				{{f.media.css}}
+                <tr class ="d-flex">
+                    <td class="col-4">
+						{{f.institution}} 
+						{{f.institution.errors}}
+					</td>
+                    <td class="col-3">
+						{{f.role}} 
+						{{f.role.errors}}
+					</td>
+                    <td class="col-1">{{f.DELETE}} {{f.id}}</td>
+                </tr>
+			{{f.media.js}}
+            {% endfor %}
+        </table>
+    </div>
+
 </div>
 
 {% endif %}

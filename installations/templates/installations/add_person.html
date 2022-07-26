@@ -126,45 +126,39 @@
 
 {% include 'utilities/relation_tabs.html' %}
 <div class="tab-content">
-    <div class="tab-pane fade" id="Installation">
-        {{systeminstallation_formset.management_form}}
+
+    <div class="tab-pane fade" id="Event">
+        {{personevent_formset.management_form}}
         <table class="table table-borderless table-sm">
             <tr class ="d-flex">
-                <th class="col-4">installation
+                <th class="col-4">Event
                     <a class = "btn btn-link btn-sm ml-auto" target = "_blank"
-                        href ="{% url 'installations:add_installation'  %}" 
+                        href ="{% url 'installations:add_event'  %}" 
 						role="button">
                         <i class="fa fa-plus"></i></a>
                 </th>
-                <th class="col-3">start date</th>
-                <th class="col-3">end date</th>
-                <th class="col-2">part of</th>
+                <th class="col-3">role</th>
                 <th><i class="fa fa-times text-danger"></i></th>
             </tr>
-            {% for f in systeminstallation_formset.forms %}
+            {% for f in personevent_formset.forms %}
+				{{f.media.css}}
                 <tr class ="d-flex">
                     <td class="col-4">
-						{{f.installation}} 
-						{{f.installation.errors}}
+						{{f.event}} 
+						{{f.event.errors}}
 					</td>
                     <td class="col-3">
-						{{f.start_date}} 
-						{{f.start_date.errors}}
-					</td>
-                    <td class="col-3">
-						{{f.end_date}} 
-						{{f.end_date.errors}}
-					</td>
-                    <td class="col-2">
-						{{f.is_part_of}} 
-						{{f.is_part_of.errors}}
+						{{f.role}} 
+						{{f.role.errors}}
 					</td>
                     <td class="col-1">{{f.DELETE}} {{f.id}}</td>
                 </tr>
-				
+			{{f.media.js}}
             {% endfor %}
         </table>
     </div>
+</div>
+
 
 {% endif %}
 
