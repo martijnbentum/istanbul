@@ -329,3 +329,9 @@ installationsystem_formset = forms.inlineformset_factory(
 	Installation,SystemInstallationRelation,
 	form = SystemInstallationRelationForm, extra = 1)
 
+eventliterature_formset = forms.inlineformset_factory(
+	Event,EventLiteratureRelation,
+	form = EventLiteratureRelationForm, extra = 1)
+literatureevent_formset = forms.inlineformset_factory(
+	Literature,EventLiteratureRelation,
+	form = EventLiteratureRelationForm, extra = 1)
