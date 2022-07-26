@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from .models import System
-from .forms import SystemForm, PersonForm 
+from .forms import SystemForm, PersonForm, InstallationForm 
+from .forms import EventForm
 from .forms import systeminstallation_formset, installationsystem_formset
+from .forms import eventliterature_formset, literatureevent_formset
 from utilities.views import edit_model
 
 def hello_world(request):
@@ -14,7 +16,7 @@ def edit_system(request, pk = None, focus = '', view = 'complete'):
 		formset_names = names, focus = focus, view = view)
 
 def edit_installation(request, pk = None, focus = '', view = 'complete'):
-	names = ''
+	names = 'installationsystem_formset'
 	return edit_model(request, __name__, 'Installation','installations',pk,
 		formset_names = names, focus = focus, view = view)
 
@@ -34,7 +36,7 @@ def edit_religion(request, pk = None, focus = '', view = 'complete'):
 		formset_names = names, focus = focus, view = view)
 
 def edit_event(request, pk = None, focus = '', view = 'complete'):
-	names = ''
+	names = 'eventliterature_formset'
 	return edit_model(request, __name__, 'Event','installations',pk,
 		formset_names = names, focus = focus, view = view)
 
