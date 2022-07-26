@@ -1,7 +1,7 @@
 from .models import System, Religion, Gender, Person, InstitutionType
 from .models import Institution,EventType,Image,Style,Figure,Event
 from .models import Purpose,InstallationType,Installation,Literature
-from .models import TextType
+from .models import TextType, EventRole
 
 from django_select2.forms import ModelSelect2Widget, ModelSelect2MultipleWidget
 
@@ -40,6 +40,17 @@ class GenderWidget(ModelSelect2Widget):
 		return Gender.objects.all().order_by('name')
 
 
+class PersonWidget(ModelSelect2Widget):
+	model = Person
+	search_fields = ['name__icontains']
+
+	def label_from_instance(self,obj):
+		return obj.name
+	
+	def get_queryset(self):
+		return Person.objects.all().order_by('name')
+
+
 class PersonsWidget(ModelSelect2MultipleWidget):
 	model = Person
 	search_fields = ['name__icontains']
@@ -60,6 +71,17 @@ class InstitutionTypeWidget(ModelSelect2Widget):
 	
 	def get_queryset(self):
 		return InstitutionType.objects.all().order_by('name')
+
+
+class InstitutionWidget(ModelSelect2Widget):
+	model = Person
+	search_fields = [x + '__icontains' for x in names]
+
+	def label_from_instance(self,obj):
+		return obj.original_name
+	
+	def get_queryset(self):
+		return Institution.objects.all().order_by('original_name')
 
 
 class InstitutionsWidget(ModelSelect2MultipleWidget):
@@ -192,3 +214,13 @@ class TextTypeWidget(ModelSelect2Widget):
 	def get_queryset(self):
 		return TextType.objects.all().order_by('name')
 
+
+class EventRoleWidget(ModelSelect2Widget):
+	model = InstitutionType
+	search_fields = ['name__icontains']
+
+	def label_from_instance(self,obj):
+		return obj.name
+	
+	def get_queryset(self):
+		return EventRole.objects.all().order_by('name')
