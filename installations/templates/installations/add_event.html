@@ -55,6 +55,12 @@
 					{{form.event_type}} 
 					{{from.event_type.error}}
 				</td>
+				<td>
+                    <a class = "btn btn-link btn-sm ml-auto" target = "_blank"
+                        href ="{% url 'installations:add_eventtype'  'inline' %}" 
+						role="button">
+                        <i class="fa fa-plus"></i></a>
+				</td>
             </tr>
             <tr class="d-flex">
                 <th class="col-2">start_date</th>
@@ -83,12 +89,24 @@
 					{{form.images}} 
 					{{from.images.error}}
 				</td>
+				<td>
+                    <a class = "btn btn-link btn-sm ml-auto" target = "_blank"
+                        href ="{% url 'installations:add_image'  'inline' %}" 
+						role="button">
+                        <i class="fa fa-plus"></i></a>
+				</td>
             </tr>
             <tr class="d-flex">
                 <th class="col-2">figure</th>
                 <td class="col-8">
 					{{form.figure}} 
 					{{from.figure.error}}
+				</td>
+				<td>
+                    <a class = "btn btn-link btn-sm ml-auto" target = "_blank"
+                        href ="{% url 'installations:add_figure'  'inline' %}" 
+						role="button">
+                        <i class="fa fa-plus"></i></a>
 				</td>
             </tr>
             <tr class="d-flex">
@@ -134,7 +152,7 @@
             <tr class ="d-flex">
                 <th class="col-4">literature
                     <a class = "btn btn-link btn-sm ml-auto" target = "_blank"
-                        href ="{% url 'installations:add_literature'  %}" 
+                        href ="{% url 'installations:add_literature'  'inline'%}" 
 						role="button">
                         <i class="fa fa-plus"></i></a>
                 </th>
@@ -179,7 +197,12 @@
 						role="button">
                         <i class="fa fa-plus"></i></a>
                 </th>
-                <th class="col-3">role</th>
+                <th class="col-3">role
+                    <a class = "btn btn-link btn-sm ml-auto" target = "_blank"
+                        href ="{% url 'installations:add_eventrole'  'inline' %}" 
+						role="button">
+                        <i class="fa fa-plus"></i></a>
+                </th>
                 <th><i class="fa fa-times text-danger"></i></th>
             </tr>
             {% for f in eventperson_formset.forms %}
@@ -210,7 +233,12 @@
 						role="button">
                         <i class="fa fa-plus"></i></a>
                 </th>
-                <th class="col-3">role</th>
+                <th class="col-3">role
+                    <a class = "btn btn-link btn-sm ml-auto" target = "_blank"
+                        href ="{% url 'installations:add_eventrole'  'inline' %}" 
+						role="button">
+                        <i class="fa fa-plus"></i></a>
+                </th>
                 <th><i class="fa fa-times text-danger"></i></th>
             </tr>
             {% for f in eventinstitution_formset.forms %}

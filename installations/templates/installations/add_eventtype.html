@@ -16,15 +16,15 @@
     <h4 class="mt-2">{{page_name}}</h4>
 
     {% if view != "inline" %}
-        {% if page_name == "Edit religion"%}
+        {% if page_name == "Edit eventtype"%}
             <a class ="btn btn-link ml-auto" 
-				href="{% url 'installations:add_religion' %}"
+				href="{% url 'installations:add_eventtype' %}"
                 role="button">
 					<i class="fa fa-plus"></i>
 			</a>
         {% endif %}
         <a class ="btn btn-link ml-auto"
-            href="{% url 'utilities:list_view' 'Religion' 'installations'%}"
+            href="{% url 'utilities:list_view' 'EventType' 'installations'%}"
             role="button">
 				<i class="fas fa-list"></i>
 		</a>
@@ -36,8 +36,8 @@
 <!-- contains div Edit and Minimize -->
 <div class="tab-content">
     <div class="tab-pane fade show active" id="Edit">
-        {% if page_name == "Edit religion" and 'unknown' not in crud.last_update %}
-            {% include 'utilities/change_log.html' %}
+    {% if page_name == "Edit eventtype" and 'unknown' not in crud.last_update %}
+        {% include 'utilities/change_log.html' %}
             {% else %} <p class="mb-4"></p>
         {% endif %}
 

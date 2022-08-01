@@ -76,12 +76,20 @@
 					{{form.institution_type}} 
 					{{from.institution_type.error}}
 				</td>
+				<td><a class = "btn btn-link btn-sm ml-auto" target = "_blank"
+                    href ="{% url 'installations:add_institutiontype' 'inline' %}"
+						role="button"><i class="fa fa-plus"></i></a>
+				</td>
             </tr>
             <tr class="d-flex">
                 <th class="col-2">religion</th>
                 <td class="col-8">
 					{{form.religion}} 
 					{{from.religion.error}}
+				</td>
+				<td><a class = "btn btn-link btn-sm ml-auto" target = "_blank"
+						href ="{% url 'installations:add_religion' 'inline' %}"
+						role="button"><i class="fa fa-plus"></i></a>
 				</td>
             </tr>
             <tr class="d-flex">
@@ -123,16 +131,21 @@
 <div class="tab-content">
 
     <div class="tab-pane fade" id="Event">
-        {{Institutionevent_formset.management_form}}
+        {{institutionevent_formset.management_form}}
         <table class="table table-borderless table-sm">
             <tr class ="d-flex">
-                <th class="col-4">Event
+                <th class="col-4">event
                     <a class = "btn btn-link btn-sm ml-auto" target = "_blank"
-                        href ="{% url 'installations:add_event'  %}" 
+                        href ="{% url 'installations:add_event' 'inline'  %}" 
 						role="button">
                         <i class="fa fa-plus"></i></a>
                 </th>
-                <th class="col-3">role</th>
+                <th class="col-3">role
+                    <a class = "btn btn-link btn-sm ml-auto" target = "_blank"
+                        href ="{% url 'installations:add_eventrole'  'inline' %}" 
+						role="button">
+                        <i class="fa fa-plus"></i></a>
+                </th>
                 <th><i class="fa fa-times text-danger"></i></th>
             </tr>
             {% for f in institutionevent_formset.forms %}

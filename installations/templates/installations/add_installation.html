@@ -76,12 +76,20 @@
 					{{form.events}} 
 					{{from.events.error}}
 				</td>
+				<td><a class = "btn btn-link btn-sm ml-auto" target = "_blank"
+						href ="{% url 'installations:add_event' 'inline' %}"
+						role="button"><i class="fa fa-plus"></i></a>
+				</td>
             </tr>
             <tr class="d-flex">
                 <th class="col-2">purposes</th>
                 <td class="col-8">
 					{{form.purposes}} 
 					{{from.purposes.error}}
+				</td>
+				<td><a class = "btn btn-link btn-sm ml-auto" target = "_blank"
+						href ="{% url 'installations:add_purpose' 'inline' %}"
+						role="button"><i class="fa fa-plus"></i></a>
 				</td>
             </tr>
             <tr class="d-flex">
@@ -134,7 +142,7 @@
             <tr class ="d-flex">
                 <th class="col-4">system
                     <a class = "btn btn-link btn-sm ml-auto" target = "_blank"
-                        href ="{% url 'installations:add_system'  %}" 
+                        href ="{% url 'installations:add_system'  'inline' %}" 
 						role="button">
                         <i class="fa fa-plus"></i></a>
                 </th>
