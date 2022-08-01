@@ -19,7 +19,6 @@ class System(models.Model, info):
 	description = models.TextField(default = '')
 	comments = models.TextField(default = '')
 
-
 class Gender(models.Model, info):
 	name = models.CharField(max_length=300,blank=True,null=True)
 
