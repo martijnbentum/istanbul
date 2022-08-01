@@ -18,6 +18,17 @@ class SystemWidget(ModelSelect2Widget):
 		return System.objects.all().order_by('original_name')
 
 
+class PurposeWidget(ModelSelect2Widget):
+	model = Purpose
+	search_fields = ['name__icontains']
+
+	def label_from_instance(self,obj):
+		return obj.name
+	
+	def get_queryset(self):
+		return Purpose.objects.all().order_by('name')
+
+
 class ReligionWidget(ModelSelect2Widget):
 	model = Religion
 	search_fields = ['name__icontains']
