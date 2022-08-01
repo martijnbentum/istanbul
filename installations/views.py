@@ -7,6 +7,8 @@ from .forms import systeminstallation_formset, installationsystem_formset
 from .forms import eventliterature_formset, literatureevent_formset
 from .forms import eventperson_formset, personevent_formset
 from .forms import eventinstitution_formset, institutionevent_formset
+from .forms import PurposeForm, EventRoleForm, InstitutionTypeForm
+from .forms import EventTypeForm
 from utilities.views import edit_model
 
 
@@ -29,6 +31,26 @@ def edit_person(request, pk = None, focus = '', view = 'complete'):
 def edit_institution(request, pk = None, focus = '', view = 'complete'):
 	names = 'institutionevent_formset'
 	return edit_model(request, __name__, 'Institution','installations',pk,
+		formset_names = names, focus = focus, view = view)
+
+def edit_purpose(request, pk = None, focus = '', view = 'complete'):
+	names = ''
+	return edit_model(request, __name__, 'Purpose','installations',pk,
+		formset_names = names, focus = focus, view = view)
+
+def edit_institutiontype(request, pk = None, focus = '', view = 'complete'):
+	names = ''
+	return edit_model(request, __name__, 'InstitutionType','installations',pk,
+		formset_names = names, focus = focus, view = view)
+
+def edit_eventtype(request, pk = None, focus = '', view = 'complete'):
+	names = ''
+	return edit_model(request, __name__, 'EventType','installations',pk,
+		formset_names = names, focus = focus, view = view)
+
+def edit_eventrole(request, pk = None, focus = '', view = 'complete'):
+	names = ''
+	return edit_model(request, __name__, 'EventRole','installations',pk,
 		formset_names = names, focus = focus, view = view)
 
 def edit_religion(request, pk = None, focus = '', view = 'complete'):
