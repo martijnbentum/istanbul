@@ -3,7 +3,7 @@ from .models import System, Religion, Gender, Person, InstitutionType
 from .models import Institution,EventType,Image,Style,Figure,Event
 from .models import Purpose,InstallationType,Installation,Literature
 from .models import SystemInstallationRelation,TextType
-from .models import EventLiteratureRelation, EventRole
+from .models import EventLiteratureRelation, EventRole, InstitutionType
 from .models import EventInstitutionRelation,EventPersonRelation
 
 
@@ -42,6 +42,22 @@ class SystemForm(forms.ModelForm):
 		fields = 'original_name,ottoman_name,english_name,turkish_name'
 		fields += ',description,comments'
 		fields = fields.split(',')
+
+
+class InstitutionTypeForm(forms.ModelForm):
+	name = forms.CharField(**dchar_required)
+
+	class Meta:
+		model = InstitutionType
+		fields = ['name']
+
+
+class EventRoleForm(forms.ModelForm):
+	name = forms.CharField(**dchar_required)
+
+	class Meta:
+		model = EventRole
+		fields = ['name']
 
 
 class ReligionForm(forms.ModelForm):
