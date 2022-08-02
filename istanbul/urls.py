@@ -18,6 +18,7 @@ from django.urls import path, re_path, include
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from . import settings
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,6 +37,6 @@ if settings.DEBUG:
         document_root= settings.MEDIA_ROOT)
 else:
     print('live')
-    x = re_path(r'media/?P<filename>.*)$', views.protected_media,
+    x = re_path(r'media/(?P<filename>.*)$', views.protected_media,
         name='protected_media')
     urlpatterns.append(x)
