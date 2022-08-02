@@ -4,6 +4,7 @@ from django.conf import settings
 from django.http import Http404, HttpResponse
 from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
+from . import views
 
 
 def protected_media(request, filename):
