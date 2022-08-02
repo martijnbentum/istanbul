@@ -1,14 +1,12 @@
 *.DS_Store
 *.pyc
 *.swp
-*.xlsx
 __pychache__
 installations/SWP/
 installations/migrations/*
 accounts/migrations/*
 utilities/migrations/*
 */migrations/*
-data/
 db.sqlite3*
 .env
 static/
