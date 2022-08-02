@@ -33,7 +33,7 @@
         <td>{{event.end_date.year}}</td>
         <td style="white-space:nowrap;">
             <a class = "btn btn-link btn-sm ml-auto" 
-href ="{% url 'utilities:delete_model' event.pk 'event' 'installations' %}"
+href ="{% url 'utilities:delete_model' event.pk 'Event' 'installations' %}"
                 role="button">
                     <i class="fa fa-trash text-secondary"></i>
             </a>
@@ -49,7 +49,7 @@ href ="{% url 'utilities:delete_model' event.pk 'event' 'installations' %}"
 </div>
 
 {% else %}
-    <p>no installations are available</p>
+    <p>no events are available</p>
 {% endif %}
 
 {% endblock content %}
