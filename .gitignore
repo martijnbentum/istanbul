@@ -9,7 +9,6 @@ utilities/migrations/*
 */migrations/*
 db.sqlite3*
 .env
-static/
 *.txt
 *.json
 media/
