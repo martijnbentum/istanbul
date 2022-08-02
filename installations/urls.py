@@ -13,7 +13,7 @@ urlpatterns = [
         views.edit_installation, name = 'add_installation'),
 	path('add_person/',views.edit_person, name = 'add_person'),
 	path('add_person/<str:view>', views.edit_person, 
-		name = 'edit_person'),
+		name = 'add_person'),
 	path('add_institution/',views.edit_institution, name = 'add_institution'),
 	path('add_institution/<str:view>',views.edit_institution, 
         name = 'add_institution'),
