@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required, permission_required
 from .models import System
 from .forms import SystemForm, PersonForm, InstallationForm 
 from .forms import EventForm, LiteratureForm, InstitutionForm
@@ -11,7 +12,6 @@ from .forms import PurposeForm, EventRoleForm, InstitutionTypeForm
 from .forms import EventTypeForm
 from utilities.views import edit_model
 
-class 
 
 @permission_required('utilities.add_generic')
 def home(request):
