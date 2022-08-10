@@ -147,7 +147,7 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 SELECT2BOOTSTRAP = True
-LOGIN_REDIRECT_URL = '/installations/'
+LOGIN_REDIRECT_URL = '/installations/home'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 	
 

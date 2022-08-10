@@ -4,7 +4,8 @@ from . import views
 app_name = 'installations'
 
 urlpatterns = [
-	path('',views.edit_system, name = 'add_system'),
+	path('',views.home, name = 'home'),
+	path('home/',views.home, name = 'home'),
 	path('add_system/',views.edit_system, name = 'add_system'),
 	path('add_system/<str:view>', views.edit_system, 
 		name = 'add_system'),

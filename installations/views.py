@@ -11,6 +11,9 @@ from .forms import PurposeForm, EventRoleForm, InstitutionTypeForm
 from .forms import EventTypeForm
 from utilities.views import edit_model
 
+def home(request):
+    args = {}
+    return render(request,'installations/home.html',args)
 
 # Create your views here.
 def edit_system(request, pk = None, focus = '', view = 'complete'):
