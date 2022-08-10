@@ -11,6 +11,9 @@ from .forms import PurposeForm, EventRoleForm, InstitutionTypeForm
 from .forms import EventTypeForm
 from utilities.views import edit_model
 
+class 
+
+@permission_required('utilities.add_generic')
 def home(request):
     args = {}
     return render(request,'installations/home.html',args)
