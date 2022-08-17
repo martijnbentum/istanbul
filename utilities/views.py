@@ -69,7 +69,7 @@ def edit_model(request, name_space, model_name, app_name, instance_id = None,
 	if request.method == 'POST':
 		focus, button = getfocus(request), getbutton(request)
 		if button in 'delete,cancel,confirm_delete': 
-			return delete_model(request,name_space,model_name,app_name,instance_id)
+			return delete_model(request,model_name,app_name,instance_id)
 		copy_instance = copy_complete(instance) if button == 'saveas' and instance else False
 		form = modelform(request.POST, request.FILES, instance=instance)
 		print('made form in post',delta(start))
