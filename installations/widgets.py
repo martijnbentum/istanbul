@@ -9,13 +9,14 @@ names = 'original_name,ottoman_name,english_name,turkish_name'.split(',')
 
 class SystemWidget(ModelSelect2Widget):
 	model = System
-	search_fields = [x + '__icontains' for x in names]
+	# search_fields = [x + '__icontains' for x in names]
+	search_fields = ['english_name__icontains']
 	
 	def label_from_instance(self,obj):
-		return obj.original_name
+		return obj.english_name
 
 	def get_queryset(self):
-		return System.objects.all().order_by('original_name')
+		return System.objects.all().order_by('english_name')
 
 
 class PurposeWidget(ModelSelect2Widget):
@@ -86,24 +87,26 @@ class InstitutionTypeWidget(ModelSelect2Widget):
 
 class InstitutionWidget(ModelSelect2Widget):
 	model = Person
-	search_fields = [x + '__icontains' for x in names]
+	# search_fields = [x + '__icontains' for x in names]
+	search_fields = ['english_name__icontains']
 
 	def label_from_instance(self,obj):
-		return obj.original_name
+		return obj.english_name
 	
 	def get_queryset(self):
-		return Institution.objects.all().order_by('original_name')
+		return Institution.objects.all().order_by('english_name')
 
 
 class InstitutionsWidget(ModelSelect2MultipleWidget):
 	model = Institution
-	search_fields = [x + '__icontains' for x in names]
+	# search_fields = [x + '__icontains' for x in names]
+	search_fields = ['english_name__icontains']
 	
 	def label_from_instance(self,obj):
-		return obj.original_name
+		return obj.english_name
 
 	def get_queryset(self):
-		return Institution.objects.all().order_by('original_name')
+		return Institution.objects.all().order_by('english_name')
 
 
 class EventTypeWidget(ModelSelect2Widget):
@@ -196,23 +199,24 @@ class InstallationTypeWidget(ModelSelect2Widget):
 
 class InstallationWidget(ModelSelect2Widget):
 	model = System
-	search_fields = [x + '__icontains' for x in names]
+	# search_fields = [x + '__icontains' for x in names]
+	search_fields = ['english_name__icontains']
 	
 	def label_from_instance(self,obj):
-		return obj.original_name
+		return obj.english_name
 
 	def get_queryset(self):
-		return Installation.objects.all().order_by('original_name')
+		return Installation.objects.all().order_by('english_name')
 
 class LiteratureWidget(ModelSelect2Widget):
 	model = Literature
-	search_fields = ['title__icontains']
+	search_fields = ['title__icontains','code__icontains']
 
 	def label_from_instance(self,obj):
-		return obj.title
+		return obj.code + ' | ' + obj.title
 	
 	def get_queryset(self):
-		return Literature.objects.all().order_by('title')
+		return Literature.objects.all().order_by('code')
 
 
 class TextTypeWidget(ModelSelect2Widget):
