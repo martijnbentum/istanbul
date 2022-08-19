@@ -13,3 +13,4 @@ db.sqlite3*
 *.json
 media/
 IMAGES/
+data/OLD/
