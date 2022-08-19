@@ -30,9 +30,9 @@ dselect2n2 = make_select2_attr(input_length = 2)
 
 
 class SystemForm(forms.ModelForm):
-	original_name = forms.CharField(**dchar_required)
+	original_name = forms.CharField(**dchar)
 	ottoman_name = forms.CharField(**dchar)
-	english_name = forms.CharField(**dchar)
+	english_name = forms.CharField(**dchar_required)
 	turkish_name = forms.CharField(**dchar)
 	description = forms.CharField(**dtext)
 	comments = forms.CharField(**dtext)
@@ -109,9 +109,9 @@ class InstitutionTypeForm(forms.ModelForm):
 
 
 class InstitutionForm(forms.ModelForm):
-	original_name = forms.CharField(**dchar_required)
+	original_name = forms.CharField(**dchar)
 	ottoman_name = forms.CharField(**dchar)
-	english_name = forms.CharField(**dchar)
+	english_name = forms.CharField(**dchar_required)
 	turkish_name = forms.CharField(**dchar)
 	institution_type = forms.ModelChoiceField(
 		queryset = InstitutionType.objects.all(),
@@ -232,7 +232,7 @@ class InstallationTypeForm(forms.ModelForm):
 class InstallationForm(forms.ModelForm):
 	original_name = forms.CharField(**dchar)
 	ottoman_name = forms.CharField(**dchar)
-	english_name = forms.CharField(**dchar)
+	english_name = forms.CharField(**dchar_required)
 	turkish_name = forms.CharField(**dchar)
 	installation_type = forms.ModelChoiceField(
 		queryset = InstallationType.objects.all(),
@@ -258,7 +258,7 @@ class InstallationForm(forms.ModelForm):
 
 
 class LiteratureForm(forms.ModelForm):
-	code = forms.CharField(**dchar)
+	code = forms.CharField(**dchar_required)
 	title= forms.CharField(**dchar_required)
 	author= forms.CharField(**dchar)
 	editor= forms.CharField(**dchar)
