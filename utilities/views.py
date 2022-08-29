@@ -37,8 +37,9 @@ def list_view(request, model_name, app_name, max_entries=500):
     instances= s.filter()
     print('done filtering')
     print('empty query:',s.query.empty)
+    name = handle_model_page_name(model_name)
     var = {model_name.lower() +'_list':instances,
-        'page_name':model_name,
+        'page_name':name,
         'order':s.order.order_by,'direction':s.order.direction,
         'app_name':app_name,
         'query':s.query.query,'nentries':s.nentries,
@@ -103,7 +104,8 @@ def edit_model(request, name_space, model_name, app_name, instance_id = None,
     print('(after post formset factory manager / form making done',delta(start))
     tabs = make_tabs(model_name.lower(), focus_names = focus)
     print('tabs made',delta(start), tabs)
-    page_name = 'Edit ' +model_name.lower() if instance_id else 'Add ' +model_name.lower()
+    name = handle_model_page_name(model_name)
+    page_name = 'Edit ' +name if instance_id else 'Add ' +name
     helper = help_util.Helper(model_name=model_name)
     print('helper made',delta(start))
     args = {'form':form,'page_name':page_name,'crud':crud,'model_name':model_name,
@@ -220,3 +222,10 @@ def close(request):
 
 def delta(start):
     return time.time() - start
+
+def handle_model_page_name(model_name):
+    d ={'eventtype':'event type','eventrole':'event role','texttype':'text type'}
+    d['institutiontype']= 'intitution type'
+    name = model_name.lower()
+    if name in d.keys():name = d[name]
+    return name
