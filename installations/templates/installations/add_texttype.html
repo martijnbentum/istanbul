@@ -16,15 +16,15 @@
     <h4 class="mt-2">{{page_name}}</h4>
 
     {% if view != "inline" %}
-        {% if page_name == "Edit event type"%}
+        {% if page_name == "Edit text type"%}
             <a class ="btn btn-link ml-auto" 
-				href="{% url 'installations:add_eventtype' %}"
+				href="{% url 'installations:add_texttype' %}"
                 role="button">
 					<i class="fa fa-plus"></i>
 			</a>
         {% endif %}
         <a class ="btn btn-link ml-auto"
-            href="{% url 'utilities:list_view' 'EventType' 'installations'%}"
+            href="{% url 'utilities:list_view' 'textType' 'installations'%}"
             role="button">
 				<i class="fas fa-list"></i>
 		</a>
@@ -36,7 +36,7 @@
 <!-- contains div Edit and Minimize -->
 <div class="tab-content">
     <div class="tab-pane fade show active" id="Edit">
-    {% if page_name == "Edit event type" and 'unknown' not in crud.last_update %}
+    {% if page_name == "Edit text type" and 'unknown' not in crud.last_update %}
         {% include 'utilities/change_log.html' %}
             {% else %} <p class="mb-4"></p>
         {% endif %}
@@ -47,20 +47,6 @@
                 <td class="col-8">
 					{{form.name}} 
 					{{from.name.error}}
-				</td>
-            </tr>
-            <tr class="d-flex">
-                <th class="col-2">description</th>
-                <td class="col-8">
-					{{form.description}} 
-					{{form.description.error}}
-				</td>
-            </tr>
-            <tr class="d-flex">
-                <th class="col-2">comments</th>
-                <td class="col-8">
-					{{form.comments}} 
-					{{form.comments.error}}
 				</td>
             </tr>
         </table>
