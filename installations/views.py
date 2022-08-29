@@ -9,7 +9,7 @@ from .forms import eventliterature_formset, literatureevent_formset
 from .forms import eventperson_formset, personevent_formset
 from .forms import eventinstitution_formset, institutionevent_formset
 from .forms import PurposeForm, EventRoleForm, InstitutionTypeForm
-from .forms import EventTypeForm
+from .forms import EventTypeForm, TextTypeForm
 from utilities.views import edit_model
 
 
@@ -72,6 +72,11 @@ def edit_event(request, pk = None, focus = '', view = 'complete'):
 def edit_literature(request, pk = None, focus = '', view = 'complete'):
 	names = 'literatureevent_formset'
 	return edit_model(request, __name__, 'Literature','installations',pk,
+		formset_names = names, focus = focus, view = view)
+
+def edit_texttype(request, pk = None, focus = '', view = 'complete'):
+	names = ''
+	return edit_model(request, __name__, 'TextType','installations',pk,
 		formset_names = names, focus = focus, view = view)
 
 def edit_image(request, pk = None, focus = '', view = 'complete'):
