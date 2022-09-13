@@ -13,7 +13,7 @@ def index(request):
 
 class PasswordsChangeView(PasswordChangeView):
     form_class = PasswordChangeForm
-    success_url = reverse_lazy('catalogue:text_view')
+    success_url = reverse_lazy('installations:home')
     template_name = 'accounts/change_password.html'
 
 class RegisterView(generic.CreateView):
