@@ -246,6 +246,10 @@ class InstallationForm(forms.ModelForm):
 		queryset = Purpose.objects.all(),
 		widget = PurposesWidget(**dselect2),
 		required = False)
+	images = forms.ModelMultipleChoiceField(
+		queryset = Image.objects.all(),
+		widget = ImagesWidget(**dselect2),
+		required = False)
 	description = forms.CharField(**dtext)
 	comments = forms.CharField(**dtext)
 
@@ -253,7 +257,7 @@ class InstallationForm(forms.ModelForm):
 		model = Installation
 		fields = 'original_name,ottoman_name,english_name,turkish_name'
 		fields += ',installation_type,events,purposes,description,comments'
-		fields += ',still_exists'
+		fields += ',still_exists,images'
 		fields = fields.split(',')
 
 
