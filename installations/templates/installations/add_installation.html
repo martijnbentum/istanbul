@@ -100,6 +100,19 @@
 				</td>
             </tr>
             <tr class="d-flex">
+                <th class="col-2">images</th>
+                <td class="col-8">
+					{{form.images}} 
+					{{from.images.error}}
+				</td>
+				<td>
+                    <a class = "btn btn-link btn-sm ml-auto" target = "_blank"
+                        href ="{% url 'installations:add_image'  'inline' %}" 
+						role="button">
+                        <i class="fa fa-plus"></i></a>
+				</td>
+            </tr>
+            <tr class="d-flex">
                 <th class="col-2">description</th>
                 <td class="col-8">
 					{{form.description}} 
