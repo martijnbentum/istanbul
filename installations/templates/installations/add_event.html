@@ -148,16 +148,17 @@
 <div class="tab-content">
     <div class="tab-pane fade" id="Literature">
         {{eventliterature_formset.management_form}}
-        <table class="table table-borderless table-sm">
+        <table class="table table-sm">
             <tr class ="d-flex">
-                <th class="col-4">literature
+                <th class="col-2">literature
                     <a class = "btn btn-link btn-sm ml-auto" target = "_blank"
                         href ="{% url 'installations:add_literature'  'inline'%}" 
 						role="button">
                         <i class="fa fa-plus"></i></a>
                 </th>
-                <th class="col-3">page</th>
+                <th class="col-1">page</th>
                 <th class="col-3">text</th>
+                <th class="col-3">file</th>
                 <th class="col-2">type
                     <a class = "btn btn-link btn-sm ml-auto" target = "_blank"
                         href ="{% url 'installations:add_texttype'  'inline' %}" 
@@ -168,17 +169,21 @@
             {% for f in eventliterature_formset.forms %}
 				{{f.media.css}}
                 <tr class ="d-flex">
-                    <td class="col-4">
+                    <td class="col-2">
 						{{f.literature}} 
 						{{f.installation.errors}}
 					</td>
-                    <td class="col-3">
+                    <td class="col-1">
 						{{f.page_number}} 
 						{{f.page_number.errors}}
 					</td>
                     <td class="col-3">
 						{{f.text}} 
 						{{f.text.errors}}
+					</td>
+                    <td class="col-3">
+						{{f.text_file}} 
+						{{f.text_file.errors}}
 					</td>
                     <td class="col-2">
 						{{f.text_type}} 
