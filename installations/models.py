@@ -120,6 +120,7 @@ class Installation(models.Model, info):
     installation_type = models.ForeignKey(InstallationType,**dargs)
     events = models.ManyToManyField(Event,blank=True,default= None)
     purposes = models.ManyToManyField(Purpose,blank=True,default= None)
+    images = models.ManyToManyField(Image,blank=True,default= None)
     description = models.TextField(default = '')
     comments = models.TextField(default = '')
     still_exists = models.BooleanField(blank=True,null=True)
