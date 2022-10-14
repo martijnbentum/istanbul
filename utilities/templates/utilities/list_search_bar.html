@@ -54,23 +54,14 @@ var tmp = document.getElementById('js_stb')
 var active_special_term_buttons= JSON.parse(tmp.textContent);
 var special_terms = 'combine words,combine columns,exact,empty'.split(',')
 
-if (active_special_term_buttons.includes('incomplete')) {
-	special_terms.push('incomplete')
-} else {
-	special_terms.push('complete')
-}
 
-if (active_special_term_buttons.includes('issue')) {
-	special_terms.push('issue')
-} else {
-	special_terms.push('not approved')
-}
 
 for (i = 0; i<search_fields.length; i++) {
 	make_button(search_fields[i],'button_search_field');
 }
 
 for (i = 0; i<special_terms.length;i++) {
+	console.log(special_terms[i])
 	make_button(special_terms[i],'button_special_term');
 }
 
