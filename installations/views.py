@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, permission_required
-from .models import System, Image
+from .models import System, Image, Installation
 from .forms import SystemForm, PersonForm, InstallationForm 
 from .forms import EventForm, LiteratureForm, InstitutionForm
 from .forms import ReligionForm, ImageForm, FigureForm, StyleForm
@@ -11,6 +11,17 @@ from .forms import eventinstitution_formset, institutionevent_formset
 from .forms import PurposeForm, EventRoleForm, InstitutionTypeForm
 from .forms import EventTypeForm, TextTypeForm
 from utilities.views import edit_model
+
+def detail_installation_view(request,pk):
+    installation= Installation.objects.get(pk = pk)
+    events=installation.events.all().order_by('start_date')
+    epr = []
+    for event in events:
+        for x in event.eventpersonrelation_set.all():
+            epr.append(x)
+    args = {'installation':installation,'events':events,
+        'event_person_relation':epr}
+    return render(request,'installations/detail_installation_view.html',args)
 
 
 @permission_required('utilities.add_generic')
