@@ -100,6 +100,10 @@ class Event(models.Model, info):
     class Meta:
         unique_together = [['name','start_date','end_date']]
 
+    @property
+    def personrelations(self):
+        return self.eventpersonrelation_set.all()
+
 class Purpose(models.Model, info):
     name = models.CharField(max_length=300,blank=True,null=True)
     description = models.TextField(default = '')
@@ -124,6 +128,10 @@ class Installation(models.Model, info):
     description = models.TextField(default = '')
     comments = models.TextField(default = '')
     still_exists = models.BooleanField(blank=True,null=True)
+
+    @property
+    def detail_url(self):
+        return 'installations:detail_installation_view'
 
 class Literature(models.Model, info):
     code = models.CharField(max_length=300,blank=True,null=True, unique = True)
@@ -172,4 +180,9 @@ class EventPersonRelation(models.Model, info):
     event = models.ForeignKey(Event, **dargs)
     person= models.ForeignKey(Person, **dargs)
     role = models.ForeignKey(EventRole, **dargs)
+
+    @property
+    def person_role(self):
+        return self.person.name + ' ' + self.role.name
+    
 
