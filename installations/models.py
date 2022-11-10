@@ -138,6 +138,7 @@ class Literature(models.Model, info):
     issue= models.CharField(max_length=100,blank=True,null=True)
     text = models.TextField(default = '')
     comments = models.TextField(default = '')
+    description = models.TextField(default = '')
     
 class SystemInstallationRelation(models.Model, info):
     system = models.ForeignKey(System,**dargs)
