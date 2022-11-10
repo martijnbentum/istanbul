@@ -22,12 +22,12 @@ jedi==0.18.1
 kiwisolver==1.4.3
 matplotlib==3.5.2
 matplotlib-inline==0.1.3
-numpy==1.22.4
+numpy==1.23.3
 openpyxl==3.0.10
 packaging==21.3
 pandas==1.4.2
 parso==0.8.3
-#partial-date @ file:///Users/u050158/django/partial_date/dist/partial-date-0.1.tar.gz
+# partial-date @ file:///Users/mb/django/partial_date_unk/dist/partial-date-0.1.tar.gz
 pexpect==4.8.0
 pickleshare==0.7.5
 Pillow==9.1.1
